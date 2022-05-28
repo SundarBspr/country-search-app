@@ -1,15 +1,15 @@
-import React from "react";
 import "./index.css";
+import { countryCardprop } from "./typesDef";
 
-export const CountryCard = ({ country }: any) => {
+export const CountryCard = ({ props }: countryCardprop) => {
   return (
     <div className="card">
-      <img src={country.image} alt="" />
+      <img src={props.country.image} alt="" />
       <div className="card-details">
-        <div>Name: {country.name}</div>
-        <div>Population: {country.population}</div>
-        <div>Region: {country.region}</div>
-        <div>Captial: {country.capital}</div>
+        <div>Name: {props.country.name}</div>
+        <div>Population: {props.country.population}</div>
+        <div>Region: {props.country.region}</div>
+        <div>Captial: {props.country.capital}</div>
       </div>
     </div>
   );

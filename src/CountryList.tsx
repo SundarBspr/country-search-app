@@ -1,12 +1,14 @@
-import React from "react";
 import { CountryCard } from "./CountryCard";
 import "./index.css";
+import { dataType, countryListprop } from "./typesDef";
 
-export const CountryList = ({ countries }: any) => {
+export const CountryList = ({ props }: countryListprop) => {
   return (
     <div className="countries">
-      {countries.map((country: any) => {
-        return country && <CountryCard country={country} />;
+      {props.countries.map((country: dataType) => {
+        return (
+          country && <CountryCard key={country.name} props={{ country }} />
+        );
       })}
     </div>
   );
