@@ -1,13 +1,61 @@
+*{
+  box-sizing: border-box;
+}
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: grey;
 }
+.countries{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.card {
+  background-color: rgb(240, 248, 255,0.5);
+  border-radius: 0.25rem;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: 0.4s;
+  width:280px;
+  height: 350px;
+  margin: 10px;
+  resize: both;
+  cursor: pointer;
+}
+.card:hover{
+  background-color: rgb(240, 248, 255,0.7);
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.9);
+}
+img {
+  max-width: 100%;
+  vertical-align: middle;
+  height: 55%;
+} 
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.card-details{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-size: 1.2rem;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  padding: 10px;
+}
+.searchbar{
+  display: flex;
+  margin: 20px;
+  margin-left: 100px;
+  width: 1000px;
+  height:40px;
+  background-color:rgb(240, 255, 255,0.5);
+  transition: 0.2s;
+  margin-right: 10px;
+  border-radius: 1rem;
+  border: none;
+  outline: none;
+  text-indent: 1rem;
+}
+.searchbar:hover{
+  background-color: rgb(240, 255, 255,0.8);
 }
