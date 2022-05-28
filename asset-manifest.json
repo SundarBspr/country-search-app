@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/country-search-app/static/css/main.5e3f24cc.css",
+    "main.js": "/country-search-app/static/js/main.7618d88e.js",
+    "index.html": "/country-search-app/index.html",
+    "main.5e3f24cc.css.map": "/country-search-app/static/css/main.5e3f24cc.css.map",
+    "main.7618d88e.js.map": "/country-search-app/static/js/main.7618d88e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5e3f24cc.css",
+    "static/js/main.7618d88e.js"
+  ]
+}
