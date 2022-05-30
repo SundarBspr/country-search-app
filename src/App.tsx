@@ -1,57 +1,61 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "./index.css";
 import { CountryList } from "./CountryList";
 import { SearchBar } from "./SearchBar";
-import { dataType } from "./typesDef";
+import { DataType, RawDataType } from "./typesDef";
+import { arrayUseState, booleanUseState, stringUseState } from "./helpers";
 
 function App() {
-  const [data, setdata] = useState<dataType[]>([]);
-  const [text, settext] = useState<String>("");
-  const [loading, setloading] = useState<boolean>(false);
-  async function getD() {
+  const [data, setData] = useState<DataType[]>(arrayUseState);
+  const [text, setText] = useState<string>(stringUseState);
+  const [loading, setLoading] = useState<boolean>(booleanUseState);
+
+  async function getData() {
     const response: Response = await fetch(
       "https://restcountries.com/v3.1/all"
     );
-    const rawdata: any = await response.json();
-    setloading(true);
-    const newdata: Array<dataType> = rawdata.map((item: any) => {
+    const rawData: RawDataType[] = await response.json();
+    setLoading(true);
+    const newData: DataType[] = rawData.map((item) => {
       return {
-        name: item.name.official,
-        population: item.population,
-        region: item.region,
+        name: (item.name && item.name.official) || "Not Available",
+        population:
+          item.population && item.population !== 0
+            ? item.population
+            : "Not Available",
+        region: item.region ? item.region : "Not Available",
         capital:
-          item.capital !== undefined ? item.capital[0] : item.name.official,
+          item.capital !== undefined
+            ? item.capital[0]
+            : (item.name && item.name.official) || "Not Available",
         image:
           item.flags !== undefined && item.flags.png !== undefined
             ? item.flags.png
             : "https://cdn.pixabay.com/photo/2018/08/15/07/19/indian-flag-3607410_1280.jpg",
       };
     });
-    setdata(newdata);
-    setloading(false);
+    setData(newData);
+    setLoading(false);
   }
   useEffect(() => {
-    setloading(true);
-    getD();
+    setLoading(true);
+    getData();
   }, []);
 
-  const SelectedItems: dataType[] = data.filter(
-    (item: dataType) =>
-      item.name && item["name"].toLowerCase().includes(text.toLowerCase())
+  const selectedItems: DataType[] = useMemo(
+    () =>
+      data.filter(
+        (item: DataType) =>
+          item.name && item["name"].toLowerCase().includes(text.toLowerCase())
+      ),
+    [text, data]
   );
   return (
     <div>
-      <div>
-        <SearchBar settext={settext} />
-      </div>
+      <SearchBar setText={setText} />
       {loading && <h3> Loading....</h3>}
-      <CountryList
-        props={{
-          countries: SelectedItems,
-        }}
-      />
+      <CountryList countries={selectedItems} />
     </div>
   );
 }
-
 export default App;

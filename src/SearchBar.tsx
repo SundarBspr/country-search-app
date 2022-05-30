@@ -1,16 +1,11 @@
-import React, { SetStateAction } from "react";
 import "./index.css";
 import "./typesDef";
+import { SearchBarPropsType } from "./typesDef";
 
-type Props = {
-  // settext: (text: string) => {};
-  settext: React.Dispatch<SetStateAction<String>>;
-};
-export const SearchBar = ({ settext }: Props) => {
-  async function handleTextChange(e: any) {
-    settext(e.target.value);
+export const SearchBar = ({ setText }: SearchBarPropsType) => {
+  function handleTextChange(e: React.ChangeEvent<HTMLInputElement>): void {
+    setText(e.target.value);
   }
-
   return (
     <input
       name="searchbar"

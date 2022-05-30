@@ -1,4 +1,6 @@
-export const countries = [
+import { DataType } from "./typesDef";
+
+export const countries:DataType[] = [
     {
       name: "Afghanistan",
       population: 27657145,
