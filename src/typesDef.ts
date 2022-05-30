@@ -28,3 +28,8 @@ export interface RawDataType{
         png?:string,
     }
 }
+export type TypeGetData={
+    data:DataType[],
+    error:string,
+    isLoaing:boolean,
+}
